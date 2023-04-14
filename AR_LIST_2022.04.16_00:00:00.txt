@@ -1,9 +1,0 @@
-                         2022-04-16.0
-        Far-Side Vantage:  CLon =  19.1, Lat =   5.5
-
-Designation        Centroid       Strength    ETA at        Days from
-              Longitude  Latitude             East Limb     East Limb
-              (degree)   (degree)            (yyyy-mm-dd.d)
-
-FS-2022-017    86.3       19.6      3786      2022-04-17.9    1.9
-FS-2022-018     9.8      -22.8       988      2022-04-23.5    7.5

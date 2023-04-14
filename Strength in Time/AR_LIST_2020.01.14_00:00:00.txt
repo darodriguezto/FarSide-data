@@ -1,5 +1,0 @@
-                         2020-01-14.0
-        Far-Side Vantage:  CLon =  79.7, Lat =   4.4
-
- 7.974670e+01  1.046455e+01  1.315010e+02
-No Strong Active Regions (SARs) in the Sun's far hemisphere at this time.

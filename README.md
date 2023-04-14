@@ -1,1 +1,0 @@
-# FarSide-data
