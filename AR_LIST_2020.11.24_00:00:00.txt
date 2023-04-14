@@ -1,0 +1,8 @@
+                         2020-11-24.0
+        Far-Side Vantage:  CLon = 240.9, Lat =  -1.7
+
+Designation        Centroid       Strength    ETA at        Days from
+              Longitude  Latitude             East Limb     East Limb
+              (degree)   (degree)            (yyyy-mm-dd.d)
+
+FS-2020-001   330.6      -18.5        41      2020-11-24.1    0.1
