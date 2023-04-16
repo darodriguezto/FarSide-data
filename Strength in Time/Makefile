@@ -28,13 +28,13 @@ clean:
 	rm -f download output.txt listatxt
 
 run_listaurl: listaurl.cpp
-	./listaurl $(MY_ARG_VALUE) >listaurl.txt
+	./listaurl $(MY_ARG_VALUE) >> listaurl.txt
 run_Descargawget: Descargawget
 	./Descargawget $(MY_ARG_VALUE)
 
 run_listatxt: listatxt
-	./listatxt $(MY_ARG_VALUE) > archivo.txt
+	./listatxt $(MY_ARG_VALUE) >> $(MY_ARG_VALUE)/archivo.txt
 run_listadesuma: listadesuma
-	./listadesuma > listasuma.txt
+	./listadesuma $(MY_ARG_VALUE) >> $(MY_ARG_VALUE)/listasuma.txt
 run_sustraerpalabras: sustraerpalabras
-	./sustraerpalabras > datos.txt
+	./sustraerpalabras $(MY_ARG_VALUE)>> $(MY_ARG_VALUE)/datos.txt

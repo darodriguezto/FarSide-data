@@ -2,26 +2,35 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <sys/stat.h>
 
-int main() {
-    std::ifstream infile("listaurl.txt");
-    std::string url;
+int main(int argc,char **argv) {
+  std::string folder_name = argv[1]; //se agregó esta línea para que se descarguen los archivos en una carpeta de nombre igual al año
+  std::ifstream infile("listaurl.txt");//MÁS ADELANTE INCLUIR PARA QUE LISTATXT SE DESCARGUE EN EL FOLDER ESPECÍFICO 
+  std::string url;
 
-    while (std::getline(infile, url)) {
-        std::cout << "Descargando " << url << "..." << std::endl;
+  //* CREAR CARPETA
+  int result = mkdir(folder_name.c_str(), 0777);
+  if (result != 0) {
+    std::cerr << "Error al crear la carpeta " << folder_name << std::endl;
+    return 1;
+  }
 
-        // Obtener el nombre del archivo a partir de la URL
-        std::string filename = url.substr(url.find_last_of("/") + 1);
+  while (std::getline(infile, url)) {
+    std::cout << "Descargando " << url << "..." << std::endl;
 
-        // Descargar el archivo con wget
-        std::string command = "wget " + url + " -O " + filename;
-        system(command.c_str());
-    }
+    // Obtener el nombre del archivo a partir de la URL
+    std::string filename = url.substr(url.find_last_of("/") + 1);
 
-    infile.close();
+    // Descargar el archivo con wget
+    std::string command = "wget " + url + " -P " + folder_name + " -O " + folder_name + "/" + filename;
+    system(command.c_str());
+  }
 
-    std::cout << "Descarga completada." << std::endl;
+  infile.close();
 
-    return 0;
+  std::cout << "Descarga completada." << std::endl;
+
+  return 0;
 }
 

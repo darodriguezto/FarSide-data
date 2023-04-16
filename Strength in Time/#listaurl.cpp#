@@ -1,0 +1,268 @@
+#include<iostream>
+#include <sys/stat.h>
+
+int main(int argc, char **argv)
+{
+  int year=std::atoi(argv[1]);
+  int month;
+  int day;
+  int hour;
+  if(year<2022)
+    {
+      for (month=1;month<=12;++month)
+	{
+	  if (month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12){
+	    if (month<10){
+	      for (int ii=0;ii<62;++ii)
+		{
+		  day=(ii+2)/2;
+		  hour=12*(ii%2);
+		  if (day<10){
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		  }
+		  else {
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else{
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		  }}}
+	    else{
+	      for (int ii=0;ii<62;++ii)
+		{
+		  day=(ii+2)/2;
+		  hour=12*(ii%2);
+		  if (day<10){
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<"."<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<"."<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		  }
+		  else {
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<"."<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else{
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<"."<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		    }}
+		}}}
+	  if (month==2){
+	    if (year==2012 || year==2016 || year==2020){
+	      for (int ii=0;ii<58;++ii)
+		{
+		  day=(ii+2)/2;
+		  hour=12*(ii%2);
+		  if (day<10){
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		  }
+		  else {
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		  }
+		}}
+	    else {
+	      for (int ii=0;ii<56;++ii)
+		{
+		  day=(ii+2)/2;
+		  hour=12*(ii%2);
+		  if (day<10){
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		  }
+		  else {
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		  }
+		}}
+	  }
+	  if (month==4 || month==6 || month==9 || month==11){
+	    if (month<10){
+	      for (int ii=0;ii<60;++ii)
+		{
+		  day=(ii+2)/2;
+		  hour=12*(ii%2);
+		  if (day<10){
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		  }
+		  else {
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		  }}}
+	    else{
+	      for (int ii=0;ii<60;++ii)
+		{
+		  day=(ii+2)/2;
+		  hour=12*(ii%2);
+		  if (day<10){
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<"."<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<"."<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		  }
+		  else {
+		    if (hour==0){
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<"."<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+		    }
+		    else
+		      std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/"<<year<<"/AR_LIST_"<<year<<"."<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		  }
+		}}}
+	}}
+      else //DESDE AQUÍ ES PARA EL 2022 Y 2023---------------------------------------------------------------------------------------------------------------------
+	{
+	  for (month=1;month<=12;++month)
+	    {
+	      if (month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12){
+		if (month<10){
+		  for (int ii=0;ii<62;++ii)
+		    {
+		      day=(ii+2)/2;
+		      hour=12*(ii%2);
+		      if (day<10){
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }
+		      else {
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }}}
+		else{
+		  for (int ii=0;ii<62;++ii)
+		    {
+		      day=(ii+2)/2;
+		      hour=12*(ii%2);
+		      if (day<10){
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<"."<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<"."<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }
+		      else {
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<"."<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<"."<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }
+		    }}}
+	      if (month==2){
+		if (year==2012 || year==2016 || year==2020){
+		  for (int ii=0;ii<58;++ii)
+		    {
+		      day=(ii+2)/2;
+		      hour=12*(ii%2);
+		      if (day<10){
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }
+		      else {
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }
+		    }}
+		else {
+		  for (int ii=0;ii<56;++ii)
+		    {
+		      day=(ii+2)/2;
+		      hour=12*(ii%2);
+		      if (day<10){
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }
+		      else {
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }
+		    }}
+	      }
+	      if (month==4 || month==6 || month==9 || month==11){
+		if (month<10){
+		  for (int ii=0;ii<60;++ii)
+		    {
+		      day=(ii+2)/2;
+		      hour=12*(ii%2);
+		      if (day<10){
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }
+		      else {
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<".0"<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }}}
+		else{
+		  for (int ii=0;ii<60;++ii)
+		    {
+		      day=(ii+2)/2;
+		      hour=12*(ii%2);
+		      if (day<10){
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<"."<< month<<".0"<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<"."<<month<<".0"<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }
+		      else {
+			if (hour==0){
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<"."<<month<<"."<< day<< "_0"<<hour<< ":00:00.txt"<<std::endl;
+			}
+			else
+			  std::cout <<"http://jsoc.stanford.edu/data/farside/AR_Lists/AR_LIST_"<<year<<"."<<month<<"."<< day<< "_"<<hour<< ":00:00.txt"<<std::endl;
+		      }
+		    }}}
+	    }}
+  return 0;
+}
+
+      
