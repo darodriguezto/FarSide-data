@@ -3,7 +3,7 @@ CXXFLAGS=-Wall -Wextra -pedantic -std=c++11
 year=2010
 MY_ARG_VALUE=$(year)
 
-all: listaurl run_listaurl run_Descargawget run_listatxt run_listadesuma run_sustraerpalabras 2022 
+all: listaurl run_listaurl run_Descargawget run_listatxt run_listadesuma run_sustraerpalabras grafica 
 
 Descargawget: Descargawget.cpp listaurl.txt
 	$(CXX) $(CXXFLAGS) -DMY_ARG_VALUE=$(MY_ARG_VALUE) Descargawget.cpp -o Descargawget
@@ -20,7 +20,7 @@ listadesuma: listadesuma.cpp listasuma.txt
 	$(CXX) $(CXXFLAGS) listadesuma.cpp -o listadesuma
 sustraerpalabras: sustraerpalabras.cpp listasuma.txt
 	$(CXX) $(CXXFLAGS) sustraerpalabras.cpp -o sustraerpalabras
-2022: graphic.gp datos.txt
+grafica: graphic.gp datos.txt
 	gnuplot -e "year='$(MY_ARG_VALUE)'" graphic.gp
 
 .PHONY: clean
