@@ -1,9 +1,0 @@
-                         2012-11-09.0
-        Far-Side Vantage:  CLon = 125.5, Lat =  -3.5
-
-Designation        Centroid       Strength    ETA at        Days from
-              Longitude  Latitude             East Limb     East Limb
-              (degree)   (degree)            (yyyy-mm-dd.d)
-
-FS-2012-038   208.0      -21.7       101      2012-11-09.7    0.7
-FS-2012-039   111.0      -10.8       484      2012-11-16.9    7.9
