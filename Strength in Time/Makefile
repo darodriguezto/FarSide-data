@@ -3,7 +3,7 @@ CXXFLAGS=-Wall -Wextra -pedantic -std=c++11
 year=2010
 MY_ARG_VALUE=$(year)
 
-all: listaurl run_listaurl run_Descargawget run_listatxt run_listadesuma run_sustraerpalabras grafica 
+all: listaurl run_listaurl run_Descargawget run_listatxt run_listadesuma run_sustraerpalabras grafica gitignore
 
 Descargawget: Descargawget.cpp listaurl.txt
 	$(CXX) $(CXXFLAGS) -DMY_ARG_VALUE=$(MY_ARG_VALUE) Descargawget.cpp -o Descargawget
@@ -38,3 +38,5 @@ run_listadesuma: listadesuma
 	./listadesuma $(MY_ARG_VALUE) >> $(MY_ARG_VALUE)/listasuma.txt
 run_sustraerpalabras: sustraerpalabras
 	./sustraerpalabras $(MY_ARG_VALUE)>> $(MY_ARG_VALUE)/datos.txt
+gitignore: listatxt
+	./listatxt $(MY_ARG_VALUE) >> $(MY_ARG_VALUE)/.gitignore
