@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-Wall -Wextra -pedantic -std=c++11
+CXXFLAGS= -lcurl -Wall -Wextra -pedantic -std=c++11
 year=2010
 MY_ARG_VALUE=$(year)
 
