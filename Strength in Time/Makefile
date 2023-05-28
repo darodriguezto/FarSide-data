@@ -1,9 +1,9 @@
 CXX=g++
-CXXFLAGS= -lcurl -Wall -Wextra -pedantic -std=c++11
+CXXFLAGS= -Wall -Wextra -pedantic -std=c++11 -lcurl -I/home/daniel/Escritorio/Proyecto/install/build/cmake-3.18.0-rc1/Utilities/cmcurl/include/curl/
 year=2010
 MY_ARG_VALUE=$(year)
 
-all: listaurl run_listaurl run_Descargawget run_listatxt run_listadesuma run_sustraerpalabras grafica gitignore
+all: listaurl run_listaurl run_Descargawget run_listatxt run_listadesuma run_sustraerpalabras grafica gitignore archivo ETAlist graETA 
 
 Descargawget: Descargawget.cpp listaurl.txt
 	$(CXX) $(CXXFLAGS) -DMY_ARG_VALUE=$(MY_ARG_VALUE) Descargawget.cpp -o Descargawget
@@ -14,8 +14,12 @@ listaurl: listaurl.cpp
 listatxt: listatxt.cpp
 	$(CXX) $(CXXFLAGS) -DMY_ARG_VALUE=$(MY_ARG_VALUE) listatxt.cpp -o listatxt
 
-archivo.txt:
+archivo: listatxt
 	./listatxt $(MY_ARG_VALUE) > archivo.txt
+ETAlist: ETAlist.cpp archivo.txt 
+	$(CXX) $(CXXFLAGS) ETAlist.cpp -o ETAlist
+graETA: graETA.gp ETAlist.txt 
+	gnuplot -e "year='$(MY_ARG_VALUE)'" graETA.gp
 listadesuma: listadesuma.cpp listasuma.txt
 	$(CXX) $(CXXFLAGS) listadesuma.cpp -o listadesuma
 sustraerpalabras: sustraerpalabras.cpp listasuma.txt
@@ -40,3 +44,5 @@ run_sustraerpalabras: sustraerpalabras
 	./sustraerpalabras $(MY_ARG_VALUE)>> $(MY_ARG_VALUE)/datos.txt
 gitignore: listatxt
 	./listatxt $(MY_ARG_VALUE) >> $(MY_ARG_VALUE)/.gitignore
+ETAlist.txt: ETAlist 
+	./ETAlist $(MY_ARG_VALUE) >> $(MY_ARG_VALUE)/ETAlist.txt
