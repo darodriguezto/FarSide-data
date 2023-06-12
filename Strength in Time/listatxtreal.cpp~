@@ -1,0 +1,26 @@
+#include <iostream>
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        std::cerr << "Debe proporcionar el nombre de la carpeta como argumento." << std::endl;
+        return 1;
+    }
+  
+    std::string folderName = argv[1];
+  
+    if (!fs::is_directory(folderName)) {
+        std::cerr << "El argumento proporcionado no es una carpeta válida." << std::endl;
+        return 1;
+    }
+  
+    for (const auto& entry : fs::directory_iterator(folderName)) {
+        if (entry.is_regular_file()) {
+            std::cout << entry.path().filename().string() << std::endl;
+        }
+    }
+  
+    return 0;
+}
