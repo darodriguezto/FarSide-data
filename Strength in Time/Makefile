@@ -6,7 +6,7 @@ MY_ARG_VALUE=$(year)
 all: listaurl run_listaurl run_Descargawget run_listatxt run_listadesuma run_sustraerpalabras grafica gitignore archivo ETAlist graETA 
 
 Descargawget: Descargawget.cpp listaurl.txt
-	$(CXX) $(CXXFLAGS) -DMY_ARG_VALUE=$(MY_ARG_VALUE) Descargawget.cpp -o Descargawget
+	$(CXX) -DMY_ARG_VALUE=$(MY_ARG_VALUE) Descargawget.cpp -o Descargawget -lcurl
 
 listaurl: listaurl.cpp
 	$(CXX) $(CXXFLAGS) listaurl.cpp -o listaurl
