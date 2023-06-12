@@ -21,7 +21,7 @@ ETAlist: ETAlist.cpp archivo.txt
 graETA: graETA.gp ETAlist.txt 
 	gnuplot -e "year='$(MY_ARG_VALUE)'" graETA.gp
 listadesuma: listadesuma.cpp listasuma.txt
-	$(CXX) $(CXXFLAGS) listadesuma.cpp -o listadesuma
+	$(CXX) $(CXXFLAGS) listadesuma.cpp -o listadesuma -lboost_filesystem -lboost_system  
 sustraerpalabras: sustraerpalabras.cpp listasuma.txt
 	$(CXX) $(CXXFLAGS) sustraerpalabras.cpp -o sustraerpalabras
 grafica: graphic.gp datos.txt
