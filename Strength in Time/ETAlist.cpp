@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
   if (archivo.is_open()) {
     std::string nombreArchivo;
     while (std::getline(archivo, nombreArchivo)) {
-      std::string rutaCompleta = "/home/daniel/Documentos/RepoPrue/Strength in Time/"+ year + "/"  + nombreArchivo; // Reemplaza "ruta/de/los/archivos/" con la ruta correcta donde se encuentran los archivos txt
+      std::string rutaCompleta = "/home/daniel/Documentos/RepoPrue/Strength in Time/"+ year + "/"  + nombreArchivo; // Reemplazar con la ruta  donde se encuentran los archivos txt
       std::ifstream archivoTxt(rutaCompleta);
       if (archivoTxt.is_open()) {
 	std::string linea;
