@@ -1,0 +1,4 @@
+Hello World! This is a txt file to explain the steps to get the ETA graphics
+
+1. Se crea una lista de las url de cada archivo - listaurl.cpp >listaurl.txt
+2. Con el programa Descargawget.cpp se descarga los archivos de las urls contenidos en el archivo listautl.txt
