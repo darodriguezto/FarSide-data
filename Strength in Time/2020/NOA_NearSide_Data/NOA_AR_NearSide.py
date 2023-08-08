@@ -39,6 +39,6 @@ def imprimir_fechas_en_rango(day, fecha_fin):
         day += delta
 
 # Ejemplo de uso
-day = '2019-10-31'
-fecha_fin = '2019-12-31'
+day = '2020-10-14'
+fecha_fin = '2020-12-31'
 imprimir_fechas_en_rango(day, fecha_fin)
