@@ -1,14 +1,27 @@
+'''
+    Este código crea un histograma de las tablas que contienen las nuevas AR en el limbo por semana y las semanas que no tienen las
+    crea y les asigna el valor 0
+'''
+
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
+import sys
 
 # Carpeta actual (donde se encuentra el programa .py)
 carpeta = os.getcwd()
 
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        sys.exit(1)
+
+    year_str = sys.argv[1]  # Obtiene el año como cadena
+    year = int(year_str)  # Intenta convertir la cadena a un entero
+        
 # Definir el rango de fechas de interés como objetos datetime
-fecha_inicio = datetime(2011, 1, 1)
-fecha_fin = datetime(2011, 12, 31)
+fecha_inicio = datetime(year, 1, 1)
+fecha_fin = datetime(year, 12, 31)
 
 # Inicializa un diccionario para contar las filas únicas por semana
 filas_por_semana = {}
@@ -63,7 +76,7 @@ plt.ylabel('New AR')
 plt.xticks(rotation=45)
 plt.title('New AR at East Limb by week')
 plt.tight_layout()
-plt.savefig('newARatEastLimb_histogram.png')
+plt.savefig('newARatEastLimb_histogram.png', dpi=300)
 plt.show()
 print(df_histograma)
 df_histograma.to_csv('histogramtable.csv', index=False)

@@ -1,8 +1,21 @@
+'''
+    Este programa revisa los archivos txt descargados y convierte la longitud de Carrington en heliográficas
+    adicional guarda estas tablas convertidas 
+'''
+
 from sunpy.io.special import srs
 import numpy as np
 from datetime import datetime, timedelta
 import pandas as pd
 import os
+import sys
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        sys.exit(1)
+
+    year = sys.argv[1]  # Obtiene el año como cadena
+
 
 def imprimir_fechas_en_rango(day, fecha_fin):
     # Convierte las fechas de texto a objetos de fecha
@@ -75,6 +88,6 @@ def archivo_AR_Limbo(day):
             print(nueva_tabla)
 
 # Ejemplo de uso
-day = '2011-07-26'
-fecha_fin = '2011-12-31'
+day = year+'-01-01'
+fecha_fin = year+'-12-31'
 imprimir_fechas_en_rango(day, fecha_fin) 
