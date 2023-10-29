@@ -5,10 +5,11 @@ Created on Sat Oct 28 08:25:21 2023
 
 @author: daniel
 """
+#PROGRAMA QUE PASA DEL ARCHIVO TXT CON LOS ETA A UN ARCHIVO CSV (TABLAS)
 
 import csv
+import re
 
-# Nombre del archivo de entrada y salida
 nombre_archivo_txt = 'ETAlist.txt'
 nombre_archivo_csv = 'ETA.csv'
 
@@ -22,11 +23,28 @@ with open(nombre_archivo_csv, 'w', newline='') as archivo_csv:
     # Crea un objeto escritor de CSV
     escritor_csv = csv.writer(archivo_csv)
 
+    # Escribe la fila de encabezado
+    escritor_csv.writerow(["strength", "date", "", "filename"])
+
     # Itera a través de las líneas del archivo de texto y escribe cada línea en el archivo CSV
     for linea in lineas:
-        # Divide la línea en una lista de datos utilizando espacios como delimitador
-        datos = linea.strip().split()  # Usa split() sin argumentos para dividir por espacios
-        escritor_csv.writerow(datos)  # Escribe la lista de datos en el archivo CSV
+        # Utiliza una expresión regular para dividir la línea en columnas
+        datos = re.split(r'\s+', linea.strip())
+        escritor_csv.writerow(datos)
 
 print(f'El archivo "{nombre_archivo_txt}" se ha convertido a "{nombre_archivo_csv}" en formato CSV.')
 
+
+'''
+# Abre el archivo CSV en modo lectura
+with open(nombre_archivo_csv, 'r', newline='') as archivo_csv:
+    lector_csv = csv.reader(archivo_csv)
+    
+    # Lee la fila de encabezado
+    encabezado = next(lector_csv)
+    
+    # Cuenta el número de columnas en el encabezado
+    num_columnas = len(encabezado)
+
+print(f'El archivo CSV tiene {num_columnas} columnas.')
+'''
