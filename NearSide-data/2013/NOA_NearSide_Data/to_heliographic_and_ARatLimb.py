@@ -1,15 +1,20 @@
-'''
-    Este programa revisa los archivos txt descargados y convierte la longitud de Carrington en heliogr√°ficas
-    adicional guarda estas tablas convertidas 
-'''
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct 31 00:13:04 2023
+
+@author: daniel
+"""
+
+#PROGRAMA QUE PASA LOS ARCHIVOS TXT A TABLAS CSV CON INFO DE LA LONGITUD DE CARRINGTON Y GENERA UN ARCHIVO CON LAS AR PRESENTES EN EL LIMBO L0<-60
 
 from sunpy.io.special import srs
 import numpy as np
 from datetime import datetime, timedelta
 import pandas as pd
 import os
-import sys
-
+#import sys
+import argparse
 '''
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -91,6 +96,13 @@ def archivo_AR_Limbo(day):
    # IA. H-alpha Plages without Spots
     #srs_table = srs_table[np.logical_or(srs_table['ID'] == 'I', srs_table['ID'] == 'IA')]
             print(nueva_tabla)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Combina tablas para un año dado.")
+    parser.add_argument("year", type=str, help="Año para combinar las tablas")
+
+    args = parser.parse_args()
+    main(args.year)
 
 '''
 # Ejemplo de uso
