@@ -8,7 +8,8 @@ import numpy as np
 from datetime import datetime, timedelta
 import pandas as pd
 import os
-import sys
+#import sys
+import argparse
 
 '''
 if __name__ == "__main__":
@@ -18,7 +19,7 @@ if __name__ == "__main__":
     year = sys.argv[1]  # Obtiene el a√±o como cadena
 '''
 def main(year):
-    day = year+'-01-01'
+    day = year+'-05-17'
     fecha_fin = year+'-12-31'
     imprimir_fechas_en_rango(day, fecha_fin) 
 
@@ -91,6 +92,13 @@ def archivo_AR_Limbo(day):
    # IA. H-alpha Plages without Spots
     #srs_table = srs_table[np.logical_or(srs_table['ID'] == 'I', srs_table['ID'] == 'IA')]
             print(nueva_tabla)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Combina tablas para un año dado.")
+    parser.add_argument("year", type=str, help="Año para combinar las tablas")
+
+    args = parser.parse_args()
+    main(args.year)
 
 '''
 # Ejemplo de uso
