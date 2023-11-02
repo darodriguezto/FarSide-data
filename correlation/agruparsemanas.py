@@ -15,7 +15,7 @@ def main(year):
     carpeta_base = os.path.expanduser("~/Documentos/GoSA/Far_Side/FarSide-data/correlation")
     carpeta = os.path.join(carpeta_base, year)
     # Carga el archivo CSV en un DataFrame
-    archivo_csv=os.path.expanduser(f"~/Documentos/GoSA/Far_Side/FarSide-data/Strength in Time/{year}/ETA_modified_week.csv")
+    archivo_csv=os.path.expanduser(f"~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{year}/ETA_modified_week.csv")
     df = pd.read_csv(archivo_csv)
     rutasalida= os.path.join(carpeta,'semanasagrupadas.csv')
     

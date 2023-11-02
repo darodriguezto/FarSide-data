@@ -1,0 +1,10 @@
+ID,Number,Carrington Longitude,Area,Z,Longitudinal Extent,Number of Sunspots,Mag Type,Latitude,Longitude
+I,12205,17.0,30.0,Hsx,3.0,1,Alpha,15.0,92.0
+I,12208,307.0,10.0,Bxo,4.0,4,Beta,-11.0,22.0
+I,12209,254.0,940.0,Fkc,26.0,23,Beta-Gamma-Delta,-14.0,-31.0
+I,12213,273.0,40.0,Dai,5.0,9,Beta,-9.0,-12.0
+I,12214,226.0,20.0,Cro,4.0,4,Beta,-13.0,-59.0
+IA,12207,326.0,,,,,,-9.0,41.0
+IA,12210,297.0,,,,,,5.0,12.0
+IA,12211,9.0,,,,,,8.0,84.0
+IA,12212,297.0,,,,,,16.0,12.0

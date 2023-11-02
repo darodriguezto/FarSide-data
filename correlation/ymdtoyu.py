@@ -17,7 +17,7 @@ def main(year):
 # Nombre del archivo CSV de entrada y salida
     carpeta_base = os.path.expanduser("~/Documentos/GoSA/Far_Side/FarSide-data/correlation")
     carpeta = os.path.join(carpeta_base, year)
-    nombre_archivo_csv_entrada = os.path.expanduser(f"~/Documentos/GoSA/Far_Side/FarSide-data/Strength in Time/{year}/ETA_modified.csv")
+    nombre_archivo_csv_entrada = os.path.expanduser(f"~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{year}/ETA_modified.csv")
     nombre_archivo_csv_salida = os.path.join(carpeta, 'ETA_modified_week.csv')
     
     # Lista para almacenar filas modificadas

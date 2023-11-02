@@ -19,7 +19,7 @@ if __name__ == "__main__":
     year = sys.argv[1]  # Obtiene el a√±o como cadena
 '''
 def main(year):
-    day = year+'-01-01'
+    day = year+'-10-28'
     fecha_fin = year+'-12-31'
     imprimir_fechas_en_rango(day, fecha_fin) 
 
