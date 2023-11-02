@@ -13,7 +13,7 @@ import os
 import argparse
 
 def main(year):
-    carpeta_base = os.path.expanduser("~/Documentos/U/CarpetaPruebas")
+    carpeta_base = os.path.expanduser("~/Documentos/GoSA/Far_Side/FarSide-data/correlation")
     carpeta = os.path.join(carpeta_base, year)
     nombre_archivo_txt = os.path.expanduser(f"~/Documentos/GoSA/Far_Side/FarSide-data/Strength in Time/{year}/ETAlist.txt")
     nombre_archivo_csv = os.path.join(carpeta, 'ETA.csv')

@@ -12,7 +12,7 @@ import os
 import argparse
 
 def main(year):
-    carpeta_base = os.path.expanduser("~/Documentos/U/CarpetaPruebas")
+    carpeta_base = os.path.expanduser("~/Documentos/GoSA/Far_Side/FarSide-data/correlation")
     carpeta = os.path.join(carpeta_base, year)
     # Carga el archivo CSV en un DataFrame
     archivo_csv=os.path.expanduser(f"~/Documentos/GoSA/Far_Side/FarSide-data/Strength in Time/{year}/ETA_modified_week.csv")
