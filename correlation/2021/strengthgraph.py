@@ -42,6 +42,10 @@ marcadores = [date.strftime('%Y-%U') for date in marcadores]
 # Establecer las etiquetas del eje x
 plt.xticks(df.iloc[::4, 0], marcadores, rotation=45)
 
+# Establecer un tamaño de fuente más pequeño para las etiquetas del eje x
+plt.xticks(fontsize=6, rotation=25)
+
+
 plt.savefig('meanstregnth.png', dpi=300)
 # Mostrar el gráfico
 plt.show()
