@@ -40,6 +40,7 @@ date_format = DateFormatter('%Y-%U')
 ax1.xaxis.set_major_formatter(date_format)
 fig.autofmt_xdate(rotation=30)  # Inclinar las etiquetas horizontales en 30 grados
 
+plt.title('2015')
 plt.savefig('finalgraph.png', dpi=300)
 # Mostrar la gráfica
 plt.show()
