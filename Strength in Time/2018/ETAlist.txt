@@ -28,11 +28,6 @@
 225	2018-07-08.0		                         2018-07-07.0	AR_LIST_2018.07.07_00:00:00.txt
 289	2018-07-07.5		                         2018-07-07.5	AR_LIST_2018.07.07_12:00:00.txt
 87	2018-07-08.1		                         2018-07-08.0	AR_LIST_2018.07.08_00:00:00.txt
-No se pudo abrir el archivo: /home/daniel/Documentos/GoSA/Far_Side/FarSide-data/Strength in Time/2018/AR_LIST_2018.10.13_00:00:00.txt
-No se pudo abrir el archivo: /home/daniel/Documentos/GoSA/Far_Side/FarSide-data/Strength in Time/2018/AR_LIST_2018.10.13_12:00:00.txt
-No se pudo abrir el archivo: /home/daniel/Documentos/GoSA/Far_Side/FarSide-data/Strength in Time/2018/AR_LIST_2018.10.16_12:00:00.txt
-No se pudo abrir el archivo: /home/daniel/Documentos/GoSA/Far_Side/FarSide-data/Strength in Time/2018/AR_LIST_2018.10.17_00:00:00.txt
-No se pudo abrir el archivo: /home/daniel/Documentos/GoSA/Far_Side/FarSide-data/Strength in Time/2018/AR_LIST_2018.10.20_00:00:00.txt
 615	2018-11-19.4		                         2018-11-14.0	AR_LIST_2018.11.14_00:00:00.txt
 481	2018-11-25.4		                         2018-11-14.0	AR_LIST_2018.11.14_00:00:00.txt
 415	2018-11-25.6		                         2018-11-14.0	AR_LIST_2018.11.14_00:00:00.txt

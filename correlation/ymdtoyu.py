@@ -34,13 +34,13 @@ def main(year):
         for fila in lector_csv:
             # Obtener la fecha de la segunda columna y convertirla a objeto datetime
             fecha = datetime.strptime(fila[1], '%Y-%m-%d')
-    
+            date=datetime.strptime(fila[2], '%Y-%m-%d')
             # Obtener el número de semana en formato 'Y-U'
             semana = fecha.strftime('%Y-%U')
-    
+            week= date.strftime('%Y-%U')
             # Reemplazar la fecha original con el número de semana
             fila[1] = semana
-    
+            fila[2] = week
             # Agregar la fila modificada a la lista
             filas_modificadas.append(fila)
     

@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Feb  8 23:52:02 2024
+
+@author: daniel
+"""
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Cargar el archivo CSV en un DataFrame
+df = pd.read_csv("correlation_list.csv")
+
+# Definir la variable T
+T = 1.96 / (52**0.5)
+
+print(df)
+
+# Graficar la segunda columna en función de la primera
+plt.scatter(df.iloc[:, 0], df.iloc[:, 1])
+
+# Agregar una línea horizontal en la posición T
+plt.axhline(y=T, color='r',label='Minimum value for strong correlation')
+
+# Configurar etiquetas y leyenda
+plt.xlabel('Year')
+plt.ylabel('Correlation')
+plt.legend()
+plt.savefig('correlation by year.png')
+# Mostrar la gráfica
+plt.show()
+
