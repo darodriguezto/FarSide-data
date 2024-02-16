@@ -10,16 +10,19 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Cargar el archivo CSV en un DataFrame
-df = pd.read_csv("correlation_list.csv")
+df = pd.read_csv("resultados.csv")
 
 # Definir la variable T
 T = 1.96 / (52**0.5)
 
 print(df)
 
+# Graficar la segunda columna en función de la primera con barras de error
+plt.errorbar(df.iloc[:, 0], df.iloc[:, 1], yerr=df.iloc[:, 2], fmt='o', markersize=4, label='Correlation ')
+'''
 # Graficar la segunda columna en función de la primera
 plt.scatter(df.iloc[:, 0], df.iloc[:, 1])
-
+'''
 # Agregar una línea horizontal en la posición T
 plt.axhline(y=T, color='r',label='Minimum value for strong correlation')
 
