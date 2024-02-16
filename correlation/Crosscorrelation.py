@@ -30,6 +30,8 @@ df = pd.read_csv(file)
 
 Near = df.iloc[:, 1]
 Far = df.iloc[:, 2]
+sumastregnth=df.iloc[:,2].sum()
+prom=sumastregnth/53
 
 # Convertir la columna de fechas al formato año-semana y establecerla como índice
 df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0] + '-1', format='%Y-%U-%w')  # Agregar '-1' para representar el día de la semana
@@ -70,6 +72,14 @@ lag_max = 13  # Puedes ajustar este valor según tus necesidades
 # Calcular la correlación cruzada en diferentes lags
 correlation_values = [np.corrcoef(Near, np.roll(Far, lag))[0, 1] for lag in range(-lag_max, lag_max+1)]
 
+#Calcular la incertidumbre del strength
+u_Far = prom**0.5
+
+# Calcular la derivada parcial de la correlación con respecto a Near y Far
+partial_corr_Far = -np.cov(Near, Far)[0, 1] / (np.std(Near) * np.std(Far)**2)
+
+# Calcular la incertidumbre asociada a la correlación para cada lag
+u_corr_values = ((partial_corr_Far * u_Far)**2)**0.5 #for lag in range(-lag_max, lag_max+1)]
 
 # Imprimir los coeficientes de correlación para cada lag
 for lag, correlation in zip(range(-lag_max, lag_max+1), correlation_values):
@@ -80,6 +90,17 @@ for lag, correlation in zip(range(-lag_max, lag_max+1), correlation_values):
 #print('Desviación de un coeficiente aceptable: ', D)
 # Calcular los lags correspondientes
 lags = np.arange(-lag_max, lag_max+1)
+
+#GENERA TABLA QUE GUARDA LOS COEFICIENTES DE CORRELACIÓN LINEAL Y SU RESPECTIVA INCERTIDUMBRE
+try:
+    resultados_df = pd.read_csv('resultados.csv')
+except FileNotFoundError:
+    resultados_df = pd.DataFrame(columns=['year', 'r', 'error'])
+# Añadir una nueva fila al DataFrame con los resultados
+resultados_df = resultados_df.append({'year': args.year, 'r': r, 'error': u_corr_values}, ignore_index=True)
+# Guardar el DataFrame en un archivo CSV
+resultados_df.to_csv('resultados.csv', index=False)
+
 
 # Graficar la correlación en función del lag
 plt.stem(lags, correlation_values, basefmt='b-', use_line_collection=True)

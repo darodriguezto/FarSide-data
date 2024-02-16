@@ -26,6 +26,7 @@ plt.axhline(y=T, color='r',label='Minimum value for strong correlation')
 # Configurar etiquetas y leyenda
 plt.xlabel('Year')
 plt.ylabel('Correlation')
+plt.title('Coeficientes de correlación lineal por año')
 plt.legend()
 plt.savefig('correlation by year.png')
 # Mostrar la gráfica
