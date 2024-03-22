@@ -26,7 +26,7 @@ def main(year):
     for i in range(numfilas):
         print(df.iloc[i, 1])
 
-    # Eliminar las fracciones de día en la segunda columna
+    # Eliminar las fracciones de día en la segunda columna Y tercera columna 
     df.iloc[:, 1] = df.iloc[:, 1].str.split('.').str[0]
     df.iloc[:, 2] = df.iloc[:, 2].str.split('.').str[0]
     # Guardar el DataFrame modificado en un nuevo archivo CSV

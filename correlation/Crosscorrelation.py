@@ -14,7 +14,7 @@ from statsmodels.graphics.tsaplots import plot_acf
 import argparse
 import os
 
-N = 52    
+N = 104    
 aceptable = 1.96 / (N**0.5)
 
 # Utilizando argparse para ingresar el valor de "year"
@@ -31,7 +31,7 @@ df = pd.read_csv(file)
 Near = df.iloc[:, 1]
 Far = df.iloc[:, 2]
 sumastregnth=df.iloc[:,2].sum()
-prom=sumastregnth/53
+prom=sumastregnth/104
 
 # Convertir la columna de fechas al formato año-semana y establecerla como índice
 df.iloc[:, 0] = pd.to_datetime(df.iloc[:, 0] + '-1', format='%Y-%U-%w')  # Agregar '-1' para representar el día de la semana

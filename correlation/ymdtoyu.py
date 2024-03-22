@@ -9,12 +9,12 @@ Created on Sat Oct 28 10:21:00 2023
 #PROGRAMA PARA PASAR DE FECHA A SEMANAS EN LA SEGUNDA COLUMNA
 
 import csv
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import argparse
 
 def main(year):
-# Nombre del archivo CSV de entrada y salida
+    # Nombre del archivo CSV de entrada y salida
     carpeta_base = os.path.expanduser("~/Documentos/GoSA/Far_Side/FarSide-data/correlation")
     carpeta = os.path.join(carpeta_base, year)
     nombre_archivo_csv_entrada = os.path.expanduser(f"~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{year}/ETA_modified.csv")
@@ -34,13 +34,28 @@ def main(year):
         for fila in lector_csv:
             # Obtener la fecha de la segunda columna y convertirla a objeto datetime
             fecha = datetime.strptime(fila[1], '%Y-%m-%d')
-            date=datetime.strptime(fila[2], '%Y-%m-%d')
-            # Obtener el número de semana en formato 'Y-U'
-            semana = fecha.strftime('%Y-%U')
-            week= date.strftime('%Y-%U')
-            # Reemplazar la fecha original con el número de semana
+            date = datetime.strptime(fila[2], '%Y-%m-%d')
+            
+            # Determinar si la fecha está en la primera mitad o segunda mitad de la semana para la columna 2
+            if fecha.weekday() == 6:  # Si es domingo
+                semana = f"{fecha.strftime('%Y-%U')}"
+            elif fecha.weekday() < 3:  # Si es lunes, martes o miércoles
+                semana = f"{fecha.strftime('%Y-%U')}"
+            else:  # Si es jueves, viernes o sábado
+                semana = f"{fecha.strftime('%Y-%U')}.5"
+            
+            # Determinar si la fecha está en la primera mitad o segunda mitad de la semana para la columna 3
+            if date.weekday() == 6:  # Si es domingo
+                week = f"{date.strftime('%Y-%U')}"
+            elif date.weekday() < 3:  # Si es lunes, martes o miércoles
+                week = f"{date.strftime('%Y-%U')}"
+            else:  # Si es jueves, viernes o sábado
+                week = f"{date.strftime('%Y-%U')}.5"
+            
+            # Reemplazar la fecha original con el número de semana fraccionado
             fila[1] = semana
-            fila[2] = week
+            fila[2] = week  # Modificar también la tercera columna
+            
             # Agregar la fila modificada a la lista
             filas_modificadas.append(fila)
     
@@ -59,3 +74,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     nombre_carpeta_destino = args.output_folder
     main(args.year)
+
