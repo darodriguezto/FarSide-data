@@ -22,7 +22,7 @@ parser.add_argument('year', type=int, help='Año para la ruta del archivo')
 args = parser.parse_args()
 
 # Construir la ruta del archivo usando el valor de "year"
-file = f"~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{args.year}/tabla.csv"
+file = f"~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{args.year}/upcoming_strength_tabla.csv"
 file = os.path.expanduser(file)  # Expande el path del usuario
 
 df = pd.read_csv(file)
@@ -56,16 +56,16 @@ prueba_dickey_fuller(Near, 'Dependiente')
 
 # Graficar las series de tiempo con fechas como índice
 df.iloc[:, 0:].plot(subplots=True, figsize=(10, 6))
-plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{args.year}/ambas(semanas_a_partidas).png'))
+plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{args.year}/ambas(semanas_a_partidas)upcoming.png'))
 plt.show()
 
 # Graficar la autocorrelación para ambas series
 plot_acf(Near, lags=26, title='Autocorrelación para el # de Nuevas AR')
-plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{args.year}/autonear(semanas_a_partidas).png'))
+plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{args.year}/autonear(semanas_a_partidas)upcoming.png'))
 plt.show()
 
 plot_acf(Far, lags=26, title='Autocorrelación para el Strength promedio')
-plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{args.year}/autofar(semanas_a_partidas).png'))
+plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{args.year}/autofar(semanas_a_partidas)upcoming.png'))
 plt.show()
 
 # Supongamos que Near y Far son tus series temporales
@@ -95,18 +95,18 @@ lags = np.arange(-lag_max, lag_max+1)
 
 #GENERA TABLA QUE GUARDA LOS COEFICIENTES DE CORRELACIÓN LINEAL Y SU RESPECTIVA INCERTIDUMBRE
 try:
-    resultados_df = pd.read_csv('resultados.csv')
+    resultados_df = pd.read_csv('resultados_upcoming.csv')
 except FileNotFoundError:
     resultados_df = pd.DataFrame(columns=['year', 'r', 'error'])
 # Añadir una nueva fila al DataFrame con los resultados
 resultados_df = resultados_df.append({'year': args.year, 'r': r, 'error': u_corr_values}, ignore_index=True)
 # Guardar el DataFrame en un archivo CSV
-resultados_df.to_csv('resultados.csv', index=False)
+resultados_df.to_csv('resultados_upcoming.csv', index=False)
 
 
 # Graficar la correlación en función del lag
 plt.stem(lags, correlation_values, basefmt='b-', use_line_collection=True)
-plt.title(f'Correlación cruzada entre Near y Far {args.year}')
+plt.title(f'Correlación cruzada entre las AR del Nearside y las AR próximas del Farside {args.year}')
 plt.xlabel('Lag')
 plt.ylabel('Correlación')
 plt.axhline(y=aceptable, color='r', linestyle='--', label='Aceptable')
@@ -115,7 +115,7 @@ plt.text(1.05, 0.85, f'r: {round(r,4)}', transform=plt.gca().transAxes, fontsize
 #plt.legend([D], loc='upper right')
 #plt.legend([r], loc='upper left')
 plt.subplots_adjust(right=0.8)
-plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{args.year}/crosscorrelation_{args.year}(semanas_a_partidas).png'))
+plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/correlation/{args.year}/crosscorrelation_{args.year}(semanas_a_partidas)upcoming.png'))
 plt.show()
 '''
 

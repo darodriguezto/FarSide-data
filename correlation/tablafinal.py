@@ -16,9 +16,9 @@ import argparse
 def main(year):
     carpeta_base = os.path.expanduser("~/Documentos/GoSA/Far_Side/FarSide-data/correlation")
     carpeta = os.path.join(carpeta_base, year)
-    archivo_salida=os.path.join(carpeta,'tabla.csv')
+    archivo_salida=os.path.join(carpeta,'upcoming_strength_tabla.csv')
     # Cargar el archivo CSV en un DataFrame
-    archivo_entrada=os.path.join(carpeta,"tabla_combinada.csv")
+    archivo_entrada=os.path.join(carpeta,"upcoming_strength_tabla_combinada.csv")
     df = pd.read_csv(archivo_entrada)
     df.insert(4, value=0, column=None)
     
