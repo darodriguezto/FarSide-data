@@ -49,6 +49,10 @@ def main(year):
                 base_file_name = os.path.splitext(os.path.basename(file_name))[0]
                 # Eliminar "AR_LIST" del nombre base del archivo
                 base_file_name = base_file_name.replace("AR_LIST_", "")
+                # Eliminar "_00:00:00" o los últimos 9 caracteres del nombre base del archivo
+                base_file_name = base_file_name.rsplit("_", 1)[0]
+                # Reemplazar puntos (.) por guiones (-)
+                base_file_name = base_file_name.replace(".", "-")
                 # Agregar el nombre del archivo, el dato de la cuarta columna y el dato de la quinta columna a la lista de resultados
                 results.append([ int(data.iloc[i, 3]), ETA_at_EastLimb, base_file_name,file_name])
     
