@@ -25,7 +25,7 @@ for i in range(1,32):
     #Determina la longitud de Carrington del limbo oriental para una fecha dada
     origen =SkyCoord(-90*u.deg, 0*u.arcsec, frame=frames.HeliographicStonyhurst , obstime=date, observer="earth")
     EastLimb=origen.transform_to(frames.HeliographicCarrington)
-    print('Longitud del limbo oriental: ', round(EastLimb.lon.degree,1))
+    #print('Longitud del limbo oriental: ', round(EastLimb.lon.degree,1))
     #Rutina para convertir longitudes de las AR del nearside a Carrington
     for i in range (0,len(data)):
         longituddelaar=data.iloc[i,9] #Para acceder al valor en específico de lafila i, se separa únicamente con "," es decir no se usa la ":"
@@ -34,7 +34,9 @@ for i in range(1,32):
         stonyacarring=ar_en_Carrington.transform_to(frames.HeliographicCarrington)
         londecarrington=stonyacarring.lon.degree #necesario declarar en qué unidades se presenta, por defectoe stá en días y hora
         latdecarrington=stonyacarring.lat.degree
-        print('longitud: ',round(londecarrington,1), 'latitud: ',round(latdecarrington,1))
+        #print('longitud: ',round(londecarrington,1), 'latitud: ',round(latdecarrington,1))
+        if float(londecarrington)>float(EastLimb.lon.degree) and float(londecarrington) <float(EastLimb.lon.degree)+30:
+         print('longitud: ',round(londecarrington,1), 'latitud: ',round(latdecarrington,1))
 print(data)
 # Guardar los datos en un nuevo archivo CSV
 data.to_csv('tabla_near.csv', index=False)
