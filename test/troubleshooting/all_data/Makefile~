@@ -1,0 +1,6 @@
+all: farside_ar farside_agrupadas nearside_ar nearside_histogram combina_series agrupa_semana
+
+farside_ar:
+	@python Extrae_info_ARfarside.py $(year)
+farside_agrupadas:
+	@python select_AR_soontocomeout.py $(year)
