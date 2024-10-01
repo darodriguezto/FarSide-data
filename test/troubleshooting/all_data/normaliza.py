@@ -35,11 +35,12 @@ def main(year):
     print(df)
 
     # Crear la figura y los ejes
-    fig, ax1 = plt.subplots()
+    # Crear la figura y los ejes
+    fig, ax1 = plt.subplots(figsize=(8, 5))
     
     # Graficar la primera serie en el primer eje y
     color = 'tab:blue'
-    ax1.set_xlabel('Semana')
+    ax1.set_xlabel('Date')
     ax1.set_ylabel('Strength', color=color)
     ax1.plot(df['Fecha'], df['Strength'], color=color, label='Strength')
     ax1.tick_params(axis='y', labelcolor=color)
@@ -51,6 +52,11 @@ def main(year):
     ax2.plot(df['Fecha'], df['Number of AR detected'], color=color, label='Number of AR detected')
     ax2.tick_params(axis='y', labelcolor=color)
     
+    # Rotar las marcas del eje x (xticks)
+    ax1.tick_params(axis='x', rotation=25)
+    # Ajustar los márgenes manualmente
+    plt.subplots_adjust(bottom=0.16)  # Aumenta el margen inferior para que el xlabel no se corte
+
     # Añadir un título a la gráfica
     plt.title(f'{year}')
     
