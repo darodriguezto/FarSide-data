@@ -13,10 +13,10 @@ import numpy as np
 
 def main(year):
     carpeta_base=os.path.join(os.getcwd(), year)
-    farside = os.path.join (carpeta_base, 'AR_agrupadas.csv')
+    farside = os.path.join (carpeta_base, 'AR_agrupadas_corr.csv')
     nearside= os.path.join(carpeta_base,'ARatEastLimb_histogram_data_corr.csv')
     
-    archivo_salida=os.path.join(carpeta_base,'new_combined_data_corr.csv' )
+    archivo_salida=os.path.join(carpeta_base,'new_combined_data_corr1.csv' )
     # Especifica las rutas completas a los archivos CSV
     #file1_path = '~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/2022/Farside/AR_agrupadas.csv'
     #file2_path = '~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/2022/Nearside/2022/NOA_NearSide_Data/ARatEastLimb_histogram_data_corr.csv'
@@ -25,7 +25,7 @@ def main(year):
     df1 = pd.read_csv(farside) #far
     df2 = pd.read_csv(nearside) #near
     
-    print(df1['Date'])
+    print(df1['Prediction Date'])
     print(df2['Date'])
     
     # Define una función para redondear los días según tu criterio
@@ -49,18 +49,18 @@ def main(year):
     
     
     # Aplica la función a la columna 'Date' de df1
-    df1['Date'] = df1['Date'].apply(lambda x: round_days(str(x)))
+    df1['Prediction Date'] = df1['Prediction Date'].apply(lambda x: round_days(str(x)))
     
     # Asegúrate de que ambas columnas 'Date' estén en el formato datetime
-    df1['Date'] = pd.to_datetime(df1['Date'])
+    df1['Prediction Date'] = pd.to_datetime(df1['Prediction Date'])
     df2['Date'] = pd.to_datetime(df2['Date'])
     
     # Identifica y elimina duplicados en las columnas 'Date'
-    df1 = df1.drop_duplicates(subset=['Date'])
+    df1 = df1.drop_duplicates(subset=['Prediction Date'])
     df2 = df2.drop_duplicates(subset=['Date'])
     
     # Establece la columna 'Date' como índice para ambos DataFrames
-    df1.set_index('Date', inplace=True)
+    df1.set_index('Prediction Date', inplace=True)
     df2.set_index('Date', inplace=True)
     
     # Reindexa los DataFrames para incluir el rango completo de fechas, llenando valores faltantes con NaN

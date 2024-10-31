@@ -20,7 +20,7 @@ parser.add_argument('year', type=int, help='Año para la ruta del archivo')
 args = parser.parse_args()
 
 # Construir la ruta del archivo usando el valor de "year"
-file = f"~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/archivo_normalizado.csv"
+file = f"~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/archivo_normalizado1.csv"
 file = os.path.expanduser(file)  # Expande el path del usuario
 
 df = pd.read_csv(file)
@@ -53,16 +53,16 @@ prueba_dickey_fuller(Near, 'Dependiente')
 
 # Graficar las series de tiempo
 df.iloc[:, 0:].plot(subplots=True, figsize=(10, 6))
-plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/ambas(semanas_completas).png'))
+plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/ambas(semanas_completas)1.png'))
 plt.show()
 
 # Graficar la autocorrelación para ambas series
 plot_acf(Near, lags=13, title='Autocorrelación para el # de Nuevas AR')
-plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/autonear(semanas_completas).png'))
+plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/autonear(semanas_completas)1.png'))
 plt.show()
 
 plot_acf(Far, lags=13, title='Autocorrelación para el Strength promedio')
-plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/autofar(semanas_completas).png'))
+plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/autofar(semanas_completas)1.png'))
 plt.show()
 
 # Definir el número máximo de lags
@@ -92,12 +92,12 @@ for lag, correlation in zip(range(-lag_max, lag_max+1), correlation_values):
 # Guardar los datos de correlación y errores para todos los lags en un archivo CSV
 lags = np.arange(-lag_max, lag_max+1)
 data_lags = pd.DataFrame({'Lag': lags, 'Correlación': correlation_values, 'Error': u_corr_values})
-output_file_lags = os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/{args.year}_lags.csv')
+output_file_lags = os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/{args.year}_lags1.csv')
 data_lags.to_csv(output_file_lags, index=False)
 
 # Guardar los resultados de correlación y error solo para el lag 0 en 'resultados.csv'
 try:
-    resultados_df = pd.read_csv('resultados.csv')
+    resultados_df = pd.read_csv('resultados1.csv')
 except FileNotFoundError:
     resultados_df = pd.DataFrame(columns=['year', 'r', 'error'])
 
@@ -108,7 +108,7 @@ nueva_fila = pd.DataFrame({'year': [args.year], 'r': [r], 'error': [u_lag_0]})
 resultados_df = pd.concat([resultados_df, nueva_fila], ignore_index=True)
 
 # Guardar el DataFrame actualizado en un archivo CSV
-resultados_df.to_csv('resultados.csv', index=False)
+resultados_df.to_csv('resultados1.csv', index=False)
 
 # Graficar la correlación en función del lag
 plt.stem(lags, correlation_values, basefmt='b-', use_line_collection=True)
@@ -118,5 +118,5 @@ plt.ylabel('Correlación')
 plt.axhline(y=aceptable, color='r', linestyle='--', label='Aceptable')
 plt.text(1.05, 0.85, f'r: {round(r,4)}', transform=plt.gca().transAxes, fontsize=10, verticalalignment='top', bbox=dict(boxstyle='round', alpha=0.1))
 plt.subplots_adjust(right=0.8)
-plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/crosscorrelation_{args.year}(semanas_completas).png'))
+plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/crosscorrelation_{args.year}(semanas_completas)1.png'))
 plt.show()

@@ -12,11 +12,11 @@ import matplotlib.pyplot as plt
 
 def main(year):
     carpeta_base = os.path.join(os.getcwd(),year)
-    archivo_entrada = os.path.join(carpeta_base, 'new_combined_data_corr.csv')
+    archivo_entrada = os.path.join(carpeta_base, 'new_combined_data_corr1.csv')
     df= pd.read_csv(archivo_entrada)
     
-    archivo_salida=os.path.join( carpeta_base, 'archivo_agrupado_por_semana.csv')
-    graph= os.path.join(carpeta_base, 'Predicted vs Deteceted by week.png')
+    archivo_salida=os.path.join( carpeta_base, 'archivo_agrupado_por_semana1.csv')
+    graph= os.path.join(carpeta_base, 'Predicted vs Deteceted by week_1.png')
     
     # Asumiendo que las fechas están en las columnas 0 y 1 y son iguales, tomamos la primera columna de fechas
     df['Fecha'] = pd.to_datetime(df.iloc[:, 0])

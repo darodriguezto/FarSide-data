@@ -1,18 +1,32 @@
-all: farside_ar farside_agrupadas nearside_ar nearside_histogram combina_series agrupa_semana normaliza crosscorrelation
+all: farside_ar farside_agrupadas farside_agrupadas_last nearside_ar nearside_histogram combina_series combina_series_last agrupa_semana agrupa_semana_last normaliza normaliza_last crosscorrelation crosscorrelation_last manual manual_last
 
 farside_ar:
 	@python Extrae_info_ARfarside.py $(year)
 farside_agrupadas:
 	@python select_AR_soontocomeout.py $(year)
+farside_agrupadas_last:
+	@python select_last_AR.py $(year)
 nearside_ar:
 	@python AR_At_EastLimb.py $(year)
 nearside_histogram:
 	@python histogram_newAR_atEastLimb.py $(year)
 combina_series:
 	@python Combina_Series.py $(year)
+combina_series_last:
+	@python Combina_Series_last.py $(year)
 agrupa_semana:
 	@python agrupaporsemana.py $(year)
+agrupa_semana_last:
+	@python agrupaporsemana_last.py $(year)
 normaliza:
 	@python normaliza.py $(year)
+normaliza_last:
+	@python normaliza_last.py $(year)
 crosscorrelation:
 	@python crosscorrelation.py $(year)
+crosscorrelation_last:
+	@python crosscorrelation_last.py $(year)
+manual:
+	@python correlacion_manual.py $(year)
+manual_last:
+	@python correlacion_manual_last.py $(year)

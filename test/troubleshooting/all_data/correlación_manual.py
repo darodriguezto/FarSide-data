@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 def main(year):    
     # Abrir el archivo
-    archivo_nombre = 'archivo_normalizado.csv'
+    archivo_nombre = 'archivo_normalizado1.csv'
     carpeta_base = os.path.join(os.getcwd(), year)
     archivo = os.path.join(carpeta_base, archivo_nombre)
     df = pd.read_csv(archivo)
@@ -62,7 +62,7 @@ def main(year):
     df_resultados = df_resultados.sort_values(by='lag').reset_index(drop=True)
     
     # Guardar la tabla de correlaciones con lags en un archivo CSV
-    output_file = os.path.join(carpeta_base, 'correlaciones_lags_prueba.csv')
+    output_file = os.path.join(carpeta_base, 'correlaciones_lags_prueba1.csv')
     df_resultados.to_csv(output_file, index=False)
     
     print(f"Tabla de correlaciones guardada en: {output_file}")
@@ -92,7 +92,7 @@ def main(year):
     plt.xticks(df_resultados['lag'])  # Mostrar todas las etiquetas de lag en el eje x
     
     # Guardar gráfico
-    grafico_file = os.path.join(carpeta_base, 'correlacion_vs_lag.png')
+    grafico_file = os.path.join(carpeta_base, 'correlacion_vs_lag1.png')
     plt.savefig(grafico_file)
     plt.show()
 
@@ -104,7 +104,7 @@ def main(year):
     correlacion_lineal_lag_0 = df_resultados[df_resultados['lag'] == 0]['correlation'].values[0]
     
     # Guardar los resultados en una tabla acumulada
-    output_acumulado = 'correlaciones_acumuladas.csv'
+    output_acumulado = 'correlaciones_acumuladas1.csv'
     
     # Verificar si el archivo ya existe
     if os.path.exists(output_acumulado):

@@ -17,7 +17,7 @@ def main(year):
     carpeta_base = os.path.join(os.getcwd(), year)
     
     # Leer el archivo CSV
-    archivo = os.path.join(carpeta_base, 'archivo_agrupado_por_semana.csv')
+    archivo = os.path.join(carpeta_base, 'archivo_agrupado_por_semana1.csv')
     df = pd.read_csv(archivo)
     
     # Asumiendo que las fechas están en las columnas 0 y 1 y son iguales, tomamos la primera columna de fechas
@@ -28,7 +28,7 @@ def main(year):
     df[['Strength', 'Number of AR detected']] = scaler.fit_transform(df[['Strength', 'Number of AR detected']])
     
     # Guardar el archivo con los datos normalizados
-    archivo_salida = os.path.join(carpeta_base, 'archivo_normalizado.csv')
+    archivo_salida = os.path.join(carpeta_base, 'archivo_normalizado1.csv')
     df.to_csv(archivo_salida, index=False)
     
     # Mostrar todos los datos normalizados
@@ -61,7 +61,7 @@ def main(year):
     plt.title(f'{year}')
     
     # Guardar la gráfica
-    plt.savefig(os.path.join(carpeta_base, 'Predicted_vs_Detected_by_week_normalized.png'))
+    plt.savefig(os.path.join(carpeta_base, 'Predicted_vs_Detected_by_week_normalized1.png'))
     plt.show()
 
 
