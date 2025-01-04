@@ -112,9 +112,9 @@ resultados_df.to_csv('resultados1.csv', index=False)
 
 # Graficar la correlación en función del lag
 plt.stem(lags, correlation_values, basefmt='b-', use_line_collection=True)
-plt.title(f'Correlación cruzada entre Near y Far {args.year}')
+plt.title(f'Cross-correlation of Near-side and Far-side ARs {args.year}')
 plt.xlabel('Lag')
-plt.ylabel('Correlación')
+plt.ylabel('Correlation')
 plt.axhline(y=aceptable, color='r', linestyle='--', label='Aceptable')
 plt.text(1.05, 0.85, f'r: {round(r,4)}', transform=plt.gca().transAxes, fontsize=10, verticalalignment='top', bbox=dict(boxstyle='round', alpha=0.1))
 plt.subplots_adjust(right=0.8)

@@ -83,12 +83,12 @@ def main(year):
     plt.legend(loc='upper right')
 
     plt.xlabel('Lag')
-    plt.ylabel('Coeficiente de correlación')
-    plt.title('Coeficiente de correlación vs Lag')
+    plt.ylabel('Correlation coefficient')
+    plt.title('Correlation coefficient vs Lag')
     plt.xticks(df_resultados['lag'])  # Mostrar todas las etiquetas de lag en el eje x
     
     # Guardar gráfico
-    grafico_file = os.path.join(carpeta_base, 'correlacion_vs_lag1.png')
+    grafico_file = os.path.join(carpeta_base, f'correlacion_vs_lag1{args.year}.png')
     plt.savefig(grafico_file)
     plt.show()
 
