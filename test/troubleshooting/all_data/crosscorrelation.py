@@ -36,8 +36,8 @@ prom = sumastregnth / N
 # Convertir la columna de fechas al formato año-semana y establecerla como índice
 df.set_index(df.columns[0], inplace=True)
 
-# Función para realizar la prueba de Dickey-Fuller
-def prueba_dickey_fuller(series, nombre):
+# Función para verificar estacionariedad y mostrar resultados
+def es_estacionaria(series, nombre):
     resultado = adfuller(series, autolag='AIC')
     print(f'Prueba de Dickey-Fuller para {nombre}:')
     print('Estadístico de prueba:', resultado[0])
@@ -46,12 +46,33 @@ def prueba_dickey_fuller(series, nombre):
     for clave, valor in resultado[4].items():
         print(f'   {clave}: {valor}')
     print()
+    return resultado[1] < 0.05  # True si es estacionaria
 
-# Realizar la prueba de Dickey-Fuller para ambas series
-prueba_dickey_fuller(Far, 'Independiente')
-prueba_dickey_fuller(Near, 'Dependiente')
+# Función para convertir una serie en estacionaria aplicando diferencias
+def convertir_estacionaria(series):
+    return series.diff().dropna()
 
-# Graficar las series de tiempo
+# Verificar y convertir a estacionarias si es necesario
+if not es_estacionaria(Far, 'Independiente'):
+    print("La serie 'Independiente' no es estacionaria. Aplicando diferencias...")
+    Far = convertir_estacionaria(Far)
+    # Verificar de nuevo la estacionariedad y mostrar el nuevo valor p
+    if es_estacionaria(Far, 'Independiente (Transformada)'):
+        print("La serie 'Independiente' ahora es estacionaria.")
+
+if not es_estacionaria(Near, 'Dependiente'):
+    print("La serie 'Dependiente' no es estacionaria. Aplicando diferencias...")
+    Near = convertir_estacionaria(Near)
+    # Verificar de nuevo la estacionariedad y mostrar el nuevo valor p
+    if es_estacionaria(Near, 'Dependiente (Transformada)'):
+        print("La serie 'Dependiente' ahora es estacionaria.")
+
+# Asegurar que ambas series tengan la misma longitud
+min_length = min(len(Far), len(Near))
+Far = Far[-min_length:]
+Near = Near[-min_length:]
+
+# Graficar las series de tiempo transformadas
 df.iloc[:, 0:].plot(subplots=True, figsize=(10, 6))
 plt.savefig(os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/all_data/{args.year}/ambas(semanas_completas)1.png'))
 plt.show()

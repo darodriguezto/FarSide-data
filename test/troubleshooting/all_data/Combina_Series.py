@@ -64,7 +64,7 @@ def main(year):
     df2.set_index('Date', inplace=True)
     
     # Reindexa los DataFrames para incluir el rango completo de fechas, llenando valores faltantes con NaN
-    date_range = pd.date_range(start=f'{year}-01-01', end=f'{year}-12-31')
+    date_range = pd.date_range(start=f'{year}-01-01', end=f'{year}-07-05')
     df1 = df1.reindex(date_range).fillna(0)
     df2 = df2.reindex(date_range).fillna(0)
     

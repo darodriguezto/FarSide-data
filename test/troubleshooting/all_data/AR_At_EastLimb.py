@@ -22,7 +22,7 @@ def main(year):
     anho=int(year)
     # Definir las fechas de inicio y fin
     start_date = datetime(anho, 1, 1)
-    end_date = datetime(anho, 12, 31)
+    end_date = datetime(anho, 7, 5)
     
     # Lista para almacenar los resultados
     AR_EastLimb = []
