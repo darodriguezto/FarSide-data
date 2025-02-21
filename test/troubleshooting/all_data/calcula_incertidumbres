@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Feb  8 22:20:26 2025
+
+@author: daniel
+"""
+
+import numpy as np
+import pandas as pd
+import os
+import argparse
+
+#Constantes
+incphi=0.05
+incphi1=0.03*10**-2
+incB0=0.57
+phi1= -1.41*10**-2
+B0=9.46
+def main(year):
+    carpeta_base = os.path.join(os.getcwd(), year)
+    archivo = os.path.join(carpeta_base, 'datos_resultados_ordenados.csv')
+    file=pd.read_csv(archivo)
+    #Constantes 
+    for i in len(file):
+        B=file.iloc[i:,2]
+        phi=phi1*np.log((B/B0)**2-1)
+        dB0=B0*(np.exp(phi/phi1)-1)/B
+        dphi1=phi*(B0**2)*np.exp(phi/phi1)*np.log(np.abs(phi1))/(2*B)
+        dphi=(B0**2)*np.exp(phi/phi1)/(2*B*phi1)
+        dB=np.sqrt((dB0*incB0)**2+(dphi1*incphi1)**2+(dphi*incphi)**2)
+        print("Método derivadas parciales: ", dB)
+        
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Calcula las incertdicumbres de los campos de las AR.")
+    parser.add_argument("year", type=str, help="Año de la carpeta que contiene el archivo CSV")
+    
+    args = parser.parse_args()
+    main(args.year)
+

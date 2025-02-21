@@ -60,5 +60,5 @@ plt.legend(fontsize=12)
 plt.tight_layout()
 
 # Guardar y mostrar el gráfico
-plt.savefig('Strength_PredictedDate.png')
+plt.savefig('Strength_PredictedDate.png',dpi=800)
 plt.show()
