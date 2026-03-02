@@ -19,7 +19,7 @@ import sys
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        sys.exit(1)
+        sys.exit("Por favor, especifique el año como argumento del programa.")
 
     year = sys.argv[1]  # Obtiene el año como cadena
 
@@ -34,68 +34,67 @@ def imprimir_fechas_en_rango(day, fecha_fin):
 
     # Bucle para imprimir todas las fechas en el rango
     while day <= fecha_fin:
-        print(day.strftime('%Y-%m-%d'))
-        '''
-    #Search for SRS data for the specified date using Fido
-        srs_search = Fido.search(a.Time(day, day), a.Instrument.srs_table)
+        print(f"Procesando la fecha: {day.strftime('%Y-%m-%d')}")
+        try:
+            # Construir el nombre del archivo
+            datos_crudos = day.strftime('%Y%m%d') + 'SRS.txt'
 
-       # Fetch the downloaded SRS data and store it in the current directory
-        downloaded_srs = Fido.fetch(srs_search, path='./{file}')
-        '''
-        datos_crudos=day.strftime('%Y%m%d')
-        datos_crudos+='SRS.txt'
-       # Read the downloaded SRS data using the srs module and store it in a variable
-        srs_table = srs.read_srs(datos_crudos)
+            # Leer los datos de SRS
+            srs_table = srs.read_srs(datos_crudos)
 
-       # Filter the SRS table to include only rows with ID 'I' or 'IA'
-       # I.  Regions with Sunspots
-       # IA. H-alpha Plages without Spots
-        srs_table = srs_table[np.logical_or(srs_table['ID'] == 'I', srs_table['ID'] == 'IA')]
-        print(srs_table)
-        # Convertir la tabla de Astropy a un DataFrame de pandas
-        df_srs = srs_table.to_pandas()
+            # Filtrar la tabla para incluir solo filas con ID 'I' o 'IA'
+            srs_table = srs_table[np.logical_or(srs_table['ID'] == 'I', srs_table['ID'] == 'IA')]
+            print(f"Tabla procesada para {day.strftime('%Y-%m-%d')}:")
+            print(srs_table)
 
-        # Guardar el DataFrame en un archivo CSV
-        nombre_tabla_final = datos_crudos.replace('.txt', '') + '.csv'
-        df_srs.to_csv(nombre_tabla_final, index=False)
-        # Cargar los datos desde el archivo CSV en un DataFrame de pandas
-        df_srs = pd.read_csv(nombre_tabla_final)
+            # Convertir la tabla de Astropy a un DataFrame de pandas
+            df_srs = srs_table.to_pandas()
 
-        # Ahora puedes trabajar con df_srs como un DataFrame de pandas
-        archivo_AR_Limbo(day)
+            # Guardar el DataFrame en un archivo CSV
+            nombre_tabla_final = datos_crudos.replace('.txt', '') + '.csv'
+            df_srs.to_csv(nombre_tabla_final, index=False)
+
+            # Llamar a la función para manejar las regiones activas en el limbo
+            archivo_AR_Limbo(day)
+
+        except FileNotFoundError:
+            print(f"Archivo no encontrado: {datos_crudos}. Continuando con la siguiente fecha.")
+        except Exception as e:
+            print(f"Error procesando la fecha {day.strftime('%Y-%m-%d')}: {e}. Continuando con la siguiente fecha.")
+
+        # Incrementar el día
         day += delta
 
-        
-#Genera un archivo con una tabla que contiene las AR en el limbo <-60
+
+# Genera un archivo con una tabla que contiene las AR en el limbo (<-60)
 def archivo_AR_Limbo(day):
-    # Nombre de la subcarpeta
     subcarpeta = 'AR_at_Limb'
-    # Ruta completa de la subcarpeta
     ruta_subcarpeta = os.path.join(os.getcwd(), subcarpeta)
-    archivo=day.strftime('%Y%m%d')
-    archivo+='SRS.csv'
-    df=pd.read_csv(archivo)        
-    # Filtra las filas donde la última columna sea menor a -60
-    nueva_tabla = df[df.iloc[:, -1] < -60]
-    # Guarda la nueva tabla en un archivo CSV
-    NewAR_AtLimb=archivo.replace('SRS', '')
-    if not nueva_tabla.empty:
+    archivo = day.strftime('%Y%m%d') + 'SRS.csv'
+
+    try:
+        df = pd.read_csv(archivo)
+
+        # Filtra las filas donde la última columna sea menor a -60
+        nueva_tabla = df[df.iloc[:, -1] < -60]
+
+        if not nueva_tabla.empty:
             # Crea la carpeta si no existe
             if not os.path.exists(ruta_subcarpeta):
                 os.makedirs(ruta_subcarpeta)
-        # Ruta completa del archivo de salida en la subcarpeta
-            archivo_salida = os.path.join(ruta_subcarpeta, NewAR_AtLimb)
-            nueva_tabla.to_csv( archivo_salida , index=False)
-   # Read the downloaded SRS data using the srs module and store it in a variable
-    #srs_table = srs.read_srs(datos_crudos)
 
-   # Filter the SRS table to include only rows with ID 'I' or 'IA'
-   # I.  Regions with Sunspots
-   # IA. H-alpha Plages without Spots
-    #srs_table = srs_table[np.logical_or(srs_table['ID'] == 'I', srs_table['ID'] == 'IA')]
-            print(nueva_tabla)
+            # Guarda la nueva tabla en un archivo CSV
+            archivo_salida = os.path.join(ruta_subcarpeta, archivo.replace('SRS.csv', 'AR_Limb.csv'))
+            nueva_tabla.to_csv(archivo_salida, index=False)
+            print(f"Archivo guardado: {archivo_salida}")
+
+    except FileNotFoundError:
+        print(f"Archivo CSV no encontrado: {archivo}. Saltando.")
+    except Exception as e:
+        print(f"Error procesando el archivo {archivo}: {e}")
+
 
 # Ejemplo de uso
-day = year+'-2-9'
-fecha_fin = year+'-7-31'
-imprimir_fechas_en_rango(day, fecha_fin) 
+day = year + '-1-1'
+fecha_fin = year + '-7-31'
+imprimir_fechas_en_rango(day, fecha_fin)

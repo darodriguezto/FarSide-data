@@ -14,10 +14,10 @@ import numpy as np
 
 def main(year):
     carpeta_base = os.path.join(os.getcwd(),year)
-    archivo_entrada = os.path.join(carpeta_base, 'INCERTIDUMBRE_HISTOGRAMA.csv')
+    archivo_entrada = os.path.join(carpeta_base, 'INCERTIDUMBRE_HISTOGRAMAX.csv')
     df= pd.read_csv(archivo_entrada)
     
-    archivo_salida=os.path.join( carpeta_base, 'INCHISTO_agrupado_por_semana1.csv')
+    archivo_salida=os.path.join( carpeta_base, 'INCHISTO_agrupado_por_semana1X.csv')
     graph= os.path.join(carpeta_base, 'Predicted vs Deteceted by week_1.png')
     
     # Asumiendo que las fechas están en las columnas 0 y 1 y son iguales, tomamos la primera columna de fechas

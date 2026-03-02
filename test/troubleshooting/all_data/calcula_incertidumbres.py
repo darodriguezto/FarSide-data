@@ -30,8 +30,8 @@ def main(year):
     for i in range(len(file)):
         B = file.iloc[i, 2]
         phi = phi1 * np.log((B / B0)**2 + 1) #Expresi[[o]]n desfase, sale en la literatura
-        dB0 = B0 * (np.exp(phi / phi1) - 1) / B #Derivada de B con respecto a B0
-        dphi1 = phi * (B0**2) * np.exp(phi / phi1) * np.log(np.abs(phi1)) / (2 * B) #Derivada con respecto a phi1
+        dB0 = B/B0#Derivada de B con respecto a B0
+        dphi1 = - (B0 * phi * np.exp(phi / phi1)) / (2 * phi1**2 * np.sqrt(np.exp(phi / phi1) - 1)) #Derivada con respecto a phi1
         dphi = (B0**2) * np.exp(phi / phi1) / (2 * B * phi1) #Derivada con respecto a phi
         dB = np.sqrt((dB0 * incB0)**2 + (dphi1 * incphi1)**2 + (dphi * incphi)**2) #C[alculo] incertidumbre en cambo magn[etico]
 
@@ -45,7 +45,7 @@ def main(year):
     resultados_df = pd.DataFrame(resultados, columns=['Designation', 'Strength', 'dB', 'Prediction Date','Detection Date'])
 
     # Guardar el DataFrame en un nuevo archivo CSV
-    output_file = os.path.join(carpeta_base, 'resultados_incertidumbres.csv')
+    output_file = os.path.join(carpeta_base, 'resultados_incertidumbresX.csv') #La X al final del archivo es comparando con los originales (mal derivado)
     resultados_df.to_csv(output_file, index=False)
 
 if __name__ == "__main__":

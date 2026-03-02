@@ -14,10 +14,10 @@ import numpy as np
 
 def main(year):
     carpeta_base=os.path.join(os.getcwd(), year)
-    farside = os.path.join (carpeta_base, 'incertidumbres_agrupadas.csv')
+    farside = os.path.join (carpeta_base, 'incertidumbres_agrupadasX.csv')
     nearside= os.path.join(carpeta_base,'ARatEastLimb_histogram_data_corr.csv')
     
-    archivo_salida=os.path.join(carpeta_base,'INCERTIDUMBRE_HISTOGRAMA.csv' )
+    archivo_salida=os.path.join(carpeta_base,'INCERTIDUMBRE_HISTOGRAMAX.csv' )
     # Especifica las rutas completas a los archivos CSV
     #file1_path = '~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/2022/Farside/AR_agrupadas.csv'
     #file2_path = '~/Documentos/GoSA/Far_Side/FarSide-data/test/troubleshooting/2022/Nearside/2022/NOA_NearSide_Data/ARatEastLimb_histogram_data_corr.csv'

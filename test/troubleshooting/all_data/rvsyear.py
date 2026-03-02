@@ -17,7 +17,7 @@ incertidumbres = [0.05, 0.02, 0.04, 0.03, 0.04, 0.04, 0.05, 0.04, 0.01, 0.07, 0.
 years = np.arange(2010, 2024)
 
 # Crear la gráfica
-plt.figure(figsize=(13, 8))
+plt.figure(figsize=(21, 8))
 plt.errorbar(years, correlaciones, yerr=incertidumbres, fmt='o', ecolor='red', capsize=5, capthick=2, markerfacecolor='blue', markersize=8, linestyle='None')
 
 # Línea horizontal en y = 0.273

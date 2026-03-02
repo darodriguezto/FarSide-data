@@ -73,7 +73,7 @@ def main(year):
             combined_name = sub_group.iloc[0]['Designation'] + "_" + sub_group.iloc[0]['Detection Date'].strftime('%Y-%m')
             
             # Calcular incertidumbre para cada subgrupo
-            suma_cuadrados = np.sum(sub_group['Strength'] ** 2)
+            suma_cuadrados = np.sum(sub_group['dB'] ** 2)
             n = len(sub_group)
             dB0 = np.sqrt(suma_cuadrados) / n
             
@@ -85,7 +85,7 @@ def main(year):
     resultados_df = file.groupby('Designation').apply(custom_aggregation).reset_index(drop=True)
 
     # Guardar el DataFrame
-    output_file = os.path.join(carpeta_base, 'incertidumbres_agrupadas.csv')
+    output_file = os.path.join(carpeta_base, 'incertidumbres_agrupadasX.csv')
     
     if not resultados_df.empty:
         resultados_df.to_csv(output_file, index=False)
