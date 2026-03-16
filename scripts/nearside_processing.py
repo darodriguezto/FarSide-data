@@ -1,6 +1,6 @@
 '''
 This script:
-    1. Read
+    1. Read the NOAA cathalog to extract the AR at East Limb using its Carrington Longitude
 
 '''
 import os
@@ -10,19 +10,21 @@ import pandas as pd
 from sunpy.coordinates import frames
 from astropy.coordinates import SkyCoord
 import astropy.units as u
+import matplotlib.pyplot as plt
 
-def main(year):
-    ruta_base=os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/')
-    ruta= os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/Data/')
+ruta_base=os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/')
+ruta= os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/Data/')
+Results=os.path.join(ruta_base, 'Results')
+
+def select_AR(year):
     carpeta_base=os.path.join(ruta,f'NearSide-data/{year}/NOA_NearSide_Data')
     #carpeta_base = os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/Data/NearSide-data/{year}/NOA_NearSide_Data')
-    Results=os.path.join(ruta_base, 'Results')
     carpeta_salida = os.path.join(Results,year)
     archivo_salida = os.path.join(carpeta_salida, 'AR_EastLimb_corr.csv')
     anho=int(year)
     # Definir las fechas de inicio y fin
     start_date = datetime(anho, 1, 1)
-    end_date = datetime(anho, 7, 5)
+    end_date = datetime(anho, 12, 31)
     
     # Lista para almacenar los resultados
     AR_EastLimb = []
@@ -79,6 +81,42 @@ def main(year):
         
         # Guardar el DataFrame en un nuevo archivo CSV
         AR_EastLimb_df.to_csv(archivo_salida , index=False)
+        
+def histogram(year):
+    carpeta_base = os.path.join(Results,year)
+    archivo_entrada=os.path.join(carpeta_base, 'AR_EastLimb_corr.csv')
+    archivo_salida = os.path.join(carpeta_base, 'ARatEastLimb_histogram_data_corr.csv')
+    graph=os.path.join(carpeta_base,'New_AR_at_East_Limb_histogram.png')
+    # Cargar el archivo CSV en un DataFrame
+    df = pd.read_csv(archivo_entrada)
+    
+    # Convertir la columna de fechas a formato datetime si aún no lo está
+    df['Date'] = pd.to_datetime(df['Date'])
+    
+    # Crear el histograma
+    plt.hist(df['Date'], bins=31)  # Puedes ajustar el número de contenedores (bins) según lo desees
+    plt.title('Frequency of New AR at East Limb Over Time')
+    plt.xlabel('Date')
+    plt.ylabel('Frequency')
+    plt.xticks(rotation=45)  # Rotar las etiquetas del eje x para mayor legibilidad
+    plt.savefig(graph)  # Guardar el histograma como imagen PNG
+    plt.show()
+    
+    # Calcular las frecuencias de las fechas y organizarlas en orden ascendente
+    date_counts = df['Date'].value_counts().reset_index()
+    date_counts.columns = ['Date', 'Frequency']
+    date_counts = date_counts.sort_values(by='Date')  # Ordenar por fecha ascendente
+    
+    # Guardar los datos del histograma como archivo CSV
+    date_counts.to_csv(archivo_salida , index=False)
+    
+    # Imprimir las primeras filas del DataFrame guardado como CSV
+    print(pd.read_csv(archivo_salida))
+
+def main(year):
+    select_AR(year)
+    histogram(year)
+    
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extrae información de las AR del farside apartir de los archivos txt.")
     parser.add_argument("year", type=str, help="Año de la carpeta que contiene el archivo de texto")
