@@ -6,6 +6,8 @@ Created on Thu Sep 19 00:48:55 2024
 @author: daniel
 """
 
+# Este c+odigo recorre la carpeta que contiene los archivos txt con la informacion de las regiones activas del Far Side detectadas por el metodo de holografia heliosismica
+
 import os
 import re
 import pandas as pd
