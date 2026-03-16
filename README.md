@@ -17,12 +17,12 @@ The code is organized as a reproducible pipeline that processes the data step by
 │   ├── normalize.py
 │   └── crosscorrelation.py
 │
-├── data/
-│   ├── raw/        # Original input datasets
-│   └── processed/  # Intermediate processed datasets
+├── Data/
+│   ├── nearside-data/        # Original input datasets
+│   └── farside-data/  # Intermediate processed datasets
 │
-├── results/        # Final outputs of the analysis
-└── figures/        # Figures generated for reports or publications
+├── Results/        # Final outputs of the analysis
+└── Legacy/        # Figures generated for reports or publications
 ```
 
 ## Pipeline Overview
@@ -51,7 +51,7 @@ The entire pipeline can be executed using the `Makefile`.
 From the root directory of the repository run:
 
 ```
-make all year=
+make all year= YYYY
 ```
 
 This will sequentially execute:
@@ -70,6 +70,7 @@ Each script produces intermediate outputs that are used by the following steps.
 
 The project requires Python 3 and the following main libraries:
 
+* sunpy
 * pandas
 * numpy
 * matplotlib (if figures are generated)
@@ -83,23 +84,17 @@ pip install -r requirements.txt
 or within a conda environment.
 
 ## Data
-
-Input datasets should be placed in:
-
 ```
-data/raw/
+Data/nearside-data:	Active Regions cathalog provided by NOAA
 ```
 
-Intermediate processed files are stored in:
-
 ```
-data/processed/
-```
+Data/farside-data:	Predicted Active Regions on far-side using helioseismic holography, the data is provided by Standford
 
 Final outputs are written to:
 
 ```
-results/
+Results/
 ```
 
 ## Reproducibility
@@ -115,73 +110,4 @@ The pipeline is designed to be reproducible:
 Daniel
 Solar Physics / Data Analysis
 
-## License
 
-Specify the license under which this repository is distributed (e.g., MIT, GPL, etc.).
-## Computational Workflow
-
-The project is executed through a Makefile that organizes the full data-processing and analysis pipeline. The workflow is structured into sequential stages:
-
-1. Farside Active Region Extraction
-
-Extrae_info_ARfarside.py
-Extracts seismic far-side active region information for a given year.
-
-select_AR_soontocomeout.py
-Selects farside active regions that are expected to rotate to the visible hemisphere.
-
-select_last_AR.py
-Identifies the last emerging farside active region within a given window.
-
-2. Nearside Active Region Processing
-
-AR_At_EastLimb.py
-Identifies active regions appearing at the east limb of the visible solar disk.
-
-histogram_newAR_atEastLimb.py
-Generates histograms of newly detected active regions at the east limb.
-
-3. Time Series Construction
-
-Combina_Series.py
-Combines farside and nearside time series.
-
-Combina_Series_last.py
-Same procedure restricted to the "last AR" subset.
-
-4. Weekly Aggregation
-
-agrupaporsemana.py
-Aggregates the combined time series into weekly bins.
-
-agrupaporsemana_last.py
-Weekly aggregation for the restricted dataset.
-
-5. Normalization
-
-normaliza.py
-Normalizes weekly series.
-
-normaliza_last.py
-Normalization for the restricted dataset.
-
-6. Cross-Correlation Analysis
-
-crosscorrelation.py
-Computes cross-correlation between farside seismic indicators and nearside magnetic activity.
-
-crosscorrelation_last.py
-Same analysis applied to the restricted dataset.
-
-correlacion_manual.py
-Manual validation of correlation results.
-
-correlacion_manual_last.py
-Manual validation for restricted dataset.
-
-## Execution
-The full pipeline for a given year can be executed using:
-
-make all year=YYYY
-
-Each stage can also be executed independently.
