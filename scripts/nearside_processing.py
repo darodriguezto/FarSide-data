@@ -12,8 +12,12 @@ from astropy.coordinates import SkyCoord
 import astropy.units as u
 
 def main(year):
-    carpeta_base = os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/NearSide-data/{year}/NOA_NearSide_Data')
-    carpeta_salida = os.path.join(os.getcwd(),year)
+    ruta_base=os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/')
+    ruta= os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/Data/')
+    carpeta_base=os.path.join(ruta,f'NearSide-data/{year}/NOA_NearSide_Data')
+    #carpeta_base = os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/Data/NearSide-data/{year}/NOA_NearSide_Data')
+    Results=os.path.join(ruta_base, 'Results')
+    carpeta_salida = os.path.join(Results,year)
     archivo_salida = os.path.join(carpeta_salida, 'AR_EastLimb_corr.csv')
     anho=int(year)
     # Definir las fechas de inicio y fin
