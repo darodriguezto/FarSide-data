@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Mar 16 11:03:37 2026
-
-@author: daniel
+This srcipt:
+    1. Combine both far-sider and near-side time series
+    2. Group by week 
 """
 
 import os
@@ -64,7 +64,7 @@ def combine_time_series(year):
     df2.set_index('Date', inplace=True)
     
     # Reindexa los DataFrames para incluir el rango completo de fechas, llenando valores faltantes con NaN
-    date_range = pd.date_range(start=f'{year}-01-01', end=f'{year}-12-31')
+    date_range = pd.date_range(start=f'{year}-01-01', end=f'{year}-12-31git s')
     df1 = df1.reindex(date_range).fillna(0)
     df2 = df2.reindex(date_range).fillna(0)
     
