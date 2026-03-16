@@ -9,11 +9,12 @@ Created on Mon Mar 16 11:03:37 2026
 import os
 import argparse
 import pandas as pd
+import matplotlib.pyplot as plt
 
 ruta_base=os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/')
 Results=os.path.join(ruta_base, 'Results')
 
-def main(year):
+def combine_time_series(year):
     carpeta_base=os.path.join(Results, year)
     farside = os.path.join (carpeta_base, 'AR_agrupadas_corr.csv')
     nearside= os.path.join(carpeta_base,'ARatEastLimb_histogram_data_corr.csv')
@@ -63,7 +64,7 @@ def main(year):
     df2.set_index('Date', inplace=True)
     
     # Reindexa los DataFrames para incluir el rango completo de fechas, llenando valores faltantes con NaN
-    date_range = pd.date_range(start=f'{year}-01-01', end=f'{year}-07-05')
+    date_range = pd.date_range(start=f'{year}-01-01', end=f'{year}-12-31')
     df1 = df1.reindex(date_range).fillna(0)
     df2 = df2.reindex(date_range).fillna(0)
     
@@ -80,7 +81,63 @@ def main(year):
     
     # Muestra el nuevo DataFrame
     print(new_df)
-
+def group_by_week(year):
+    carpeta_base = os.path.join(Results,year)
+    archivo_entrada = os.path.join(carpeta_base, 'new_combined_data_corr1.csv')
+    df= pd.read_csv(archivo_entrada)
+    
+    archivo_salida=os.path.join( carpeta_base, 'archivo_agrupado_por_semana1.csv')
+    graph= os.path.join(carpeta_base, 'Predicted vs Detected by week_1.png')
+    
+    # Asumiendo que las fechas están en las columnas 0 y 1 y son iguales, tomamos la primera columna de fechas
+    df['Fecha'] = pd.to_datetime(df.iloc[:, 0])
+    
+    # Crear una nueva columna para las semanas del año
+    df['Semana'] = df['Fecha'].dt.isocalendar().week
+    
+    # Crear una nueva columna con el inicio de la semana correspondiente
+    df['InicioSemana'] = df['Fecha'] - pd.to_timedelta(df['Fecha'].dt.weekday, unit='D')
+    
+    # Agrupar por inicio de semana y sumar las columnas 3 y 4
+    df_grouped = df.groupby('InicioSemana').agg({
+        df.columns[2]: 'sum',  # Sumar la columna 3
+        df.columns[3]: 'sum'   # Sumar la columna 4
+    }).reset_index()
+    
+    # Guardar el resultado en un nuevo CSV
+    df_grouped.to_csv(archivo_salida , index=False)
+    
+    print(df_grouped)
+    
+    # Crear la figura y los ejes
+    fig, ax1 = plt.subplots()
+    
+    # Graficar la primera serie en el primer eje y
+    color = 'tab:blue'
+    ax1.set_xlabel('Date')
+    ax1.set_ylabel('Strength', color=color)
+    ax1.plot(df_grouped['InicioSemana'], df_grouped['Strength'], color=color, label='Strength')
+    ax1.tick_params(axis='y', labelcolor=color)
+    
+    # Crear un segundo eje y que comparte el mismo eje x
+    ax2 = ax1.twinx()
+    color = 'tab:red'
+    ax2.set_ylabel('Number of AR detected', color=color)
+    ax2.plot(df_grouped['InicioSemana'], df_grouped['Number of AR detected'], color=color, label='Number of AR detected')
+    ax2.tick_params(axis='y', labelcolor=color)
+    
+    # Añadir un título a la gráfica
+    plt.title('Total Strength vs new AR detected at East Limb by week')
+    
+    # Mostrar la gráfica
+    fig.tight_layout()
+    plt.savefig(graph)
+    plt.show()
+    
+def main(year):
+    combine_time_series(year)
+    group_by_week(year)
+    
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extrae información de las AR del farside apartir de los archivos txt.")
     parser.add_argument("year", type=str, help="Año de la carpeta que contiene el archivo de texto")
