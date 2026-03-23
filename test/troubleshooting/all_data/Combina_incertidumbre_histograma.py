@@ -5,6 +5,9 @@ Created on Sun Feb  9 17:48:33 2025
 
 @author: daniel
 """
+# Combines the grouped far-side uncertainty series with the near-side daily series,
+# aligns both datasets on a common daily date range, fills missing dates with zeros,
+# and saves the merged time series for further analysis.
 
 import os
 import argparse

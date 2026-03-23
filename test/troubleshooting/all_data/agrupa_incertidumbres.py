@@ -5,7 +5,7 @@ Created on Sun Feb  9 15:41:26 2025
 
 @author: daniel
 """
-
+#Groups consecutive detections of solar active regions and computes a representative magnetic field and its uncertainty by combining individual uncertainties through a quadratic sum.
 import numpy as np
 import pandas as pd
 import os
@@ -20,7 +20,7 @@ B0 = 9.46
 
 def main(year):
     carpeta_base = os.path.join(os.getcwd(), year)
-    archivo = os.path.join(carpeta_base, 'resultados_incertidumbres.csv')
+    archivo = os.path.join(carpeta_base, 'resultados_incertidumbresX.csv')
     
     # Leer el archivo con manejo de errores
     try:

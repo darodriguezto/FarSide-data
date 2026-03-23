@@ -18,7 +18,7 @@ def main(year):
     df= pd.read_csv(archivo_entrada)
     
     archivo_salida=os.path.join( carpeta_base, 'INCHISTO_agrupado_por_semana1X.csv')
-    graph= os.path.join(carpeta_base, 'Predicted vs Deteceted by week_1.png')
+    graph= os.path.join(carpeta_base, 'Predicted vs Detected by week_1.png')
     
     # Asumiendo que las fechas están en las columnas 0 y 1 y son iguales, tomamos la primera columna de fechas
     df['Fecha'] = pd.to_datetime(df.iloc[:, 0])
@@ -45,7 +45,7 @@ def main(year):
     df_grouped.to_csv(archivo_salida , index=False)
     
     print(df_grouped)
-    
+    '''   
     # Crear la figura y los ejes
     fig, ax1 = plt.subplots()
     
@@ -70,6 +70,7 @@ def main(year):
     fig.tight_layout()
     plt.savefig(graph)
     plt.show()
+'''    
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extrae información de las AR del farside apartir de los archivos txt.")
     parser.add_argument("year", type=str, help="Año de la carpeta que contiene el archivo de texto")

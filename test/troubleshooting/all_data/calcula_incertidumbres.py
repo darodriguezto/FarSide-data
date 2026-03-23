@@ -5,7 +5,9 @@ Created on Sat Feb  8 22:20:26 2025
 
 @author: daniel
 """
-#Calcula incertidumbre en el campo magn[etico] reportado (Strength) a partir de asumir la incertifdumbre del desfase igual a 0.05
+# Computes the uncertainty in the reported magnetic field (Strength), assuming
+# a phase uncertainty of 0.05. The uncertainty is obtained via error propagation
+# using partial derivatives and the equation described in the reference article.
 import numpy as np
 import pandas as pd
 import os

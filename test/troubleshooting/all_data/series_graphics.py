@@ -5,6 +5,9 @@ Created on Mon Feb 10 21:51:55 2025
 
 @author: daniel
 """
+# Normalizes the weekly far-side and near-side time series (including uncertainties),
+# saves the normalized dataset, and generates a comparison plot with error bars.
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
