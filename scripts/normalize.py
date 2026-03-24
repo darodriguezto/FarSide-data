@@ -12,8 +12,11 @@ import argparse
 import os
 from sklearn.preprocessing import MinMaxScaler
 
-ruta_base=os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/')
-Results=os.path.join(ruta_base, 'Results')
+ruta_base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+Results = os.path.join(ruta_base, 'Results')
+
+#ruta_base=os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/')
+#Results=os.path.join(ruta_base, 'Results')
 
 def normalize(year):
     carpeta_base = os.path.join(Results, year)

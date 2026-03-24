@@ -16,11 +16,14 @@ import re
 import pandas as pd
 import argparse
 
+ruta_base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+Results = os.path.join(ruta_base, 'Results')
+
 def extract(year):
     # Carpeta que contiene los archivos de texto
-    carpeta_base = os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/Data/FarSide-data/')
+    carpeta_base = os.path.join(ruta_base,'Data/FarSide-data/') #Far-side data folder
     carpeta_expandida = os.path.join(carpeta_base, year)
-    carpeta_resultados = os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/Results')
+    carpeta_resultados = Results
     carpeta_salida = os.path.join(carpeta_resultados, year)
     
     # Crear carpeta de salida si no existe
