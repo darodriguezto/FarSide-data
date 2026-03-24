@@ -324,12 +324,16 @@ def normalize_uncertainty_series(year):
 # resulting distributions as histograms.
 
 def correlation_error(year):
-    # Cargar el archivo CSV
-    carpeta_base = os.path.join(Results , year)
-    archivo_entrada = os.path.join(carpeta_base, 'histogram_with_uncertainties_by_week.csv')    
+    # Paths
+    carpeta_base = os.path.join(Results, year)
+    archivo_entrada = os.path.join(carpeta_base, 'histogram_with_uncertainties_by_week.csv')
     graph_pearson = os.path.join(carpeta_base, f'MonteCarlo_Pearson_{year}.png')
     graph_spearman = os.path.join(carpeta_base, f'MonteCarlo_Spearman_{year}.png')
-    
+
+    # CSV acumulado
+    archivo_resumen = os.path.join(Results, 'correlations.csv')
+
+    # Leer datos
     data = pd.read_csv(archivo_entrada)
 
     # Extraer columnas
@@ -344,7 +348,7 @@ def correlation_error(year):
 
     for _ in range(num_simulations):
         simulated_strength = np.random.normal(strength, uncertainty_strength)
-        
+
         # Pearson
         r_pearson, _ = pearsonr(simulated_strength, number_of_ar_detected)
         pearson_coefficients.append(r_pearson)
@@ -356,7 +360,7 @@ def correlation_error(year):
     # Resultados
     mean_pearson = np.mean(pearson_coefficients)
     std_pearson = np.std(pearson_coefficients)
-    
+
     mean_spearman = np.mean(spearman_coefficients)
     std_spearman = np.std(spearman_coefficients)
 
@@ -382,6 +386,34 @@ def correlation_error(year):
     plt.savefig(graph_spearman)
     plt.close()
 
+    # Nueva fila de resultados
+    nueva_fila = pd.DataFrame([{
+        'year': int(year),
+        'Pearson coefficient': mean_pearson,
+        'Pearson_Error': std_pearson,
+        'Spearman coefficient': mean_spearman,
+        'Spearman_Error': std_spearman
+    }])
+
+    # Si ya existe el archivo, cargarlo
+    if os.path.exists(archivo_resumen):
+        resumen_df = pd.read_csv(archivo_resumen)
+
+        # Eliminar fila previa del mismo año, si existe
+        resumen_df = resumen_df[resumen_df['year'] != int(year)]
+
+        # Agregar la nueva fila
+        resumen_df = pd.concat([resumen_df, nueva_fila], ignore_index=True)
+    else:
+        resumen_df = nueva_fila
+
+    # Ordenar por año
+    resumen_df = resumen_df.sort_values(by='year').reset_index(drop=True)
+
+    # Guardar CSV acumulado
+    resumen_df.to_csv(archivo_resumen, index=False)
+
+    print(f'Resultados guardados en: {archivo_resumen}')
 
 def main(year):
     compute_uncertainties(year)

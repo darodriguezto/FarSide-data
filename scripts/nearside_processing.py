@@ -16,7 +16,7 @@ ruta_base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 Results = os.path.join(ruta_base, 'Results')
 
 def select_AR(year):
-    carpeta_base=os.path.join(ruta_base,f'NearSide-data/{year}/NOA_NearSide_Data')
+    carpeta_base=os.path.join(ruta_base,f'Data/NearSide-data/{year}/NOA_NearSide_Data')
     #carpeta_base = os.path.expanduser(f'~/Documentos/GoSA/Far_Side/FarSide-data/Data/NearSide-data/{year}/NOA_NearSide_Data')
     carpeta_salida = os.path.join(Results,year)
     archivo_salida = os.path.join(carpeta_salida, 'AR_EastLimb_corr.csv')

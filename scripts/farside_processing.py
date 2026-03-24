@@ -90,7 +90,7 @@ def extract(year):
     print(f"Archivos procesados con éxito. Total registros: {len(df_resultado)}")
     df_resultado.to_csv(archivo_salida, index=False)
 def group(year):
-    carpeta_resultados = os.path.expanduser('~/Documentos/GoSA/Far_Side/FarSide-data/Results')
+    carpeta_resultados = Results
     carpeta_base_resultado = os.path.join(carpeta_resultados, year)
     archivo = os.path.join(carpeta_base_resultado, 'datos_resultado_ordenados.csv')
     archivo_salida = os.path.join(carpeta_base_resultado, 'AR_agrupadas_corr.csv')
