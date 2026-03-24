@@ -1,10 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Sep 23 21:01:14 2024
-
-@author: daniel
-"""
+# This script performs a time-series analysis of the normalized far-side and near-side data.
+# It tests both series for stationarity using the Augmented Dickey-Fuller test and applies
+# first-order differencing when necessary. It then computes and plots the autocorrelation
+# of each series, evaluates the cross-correlation for a range of lags, estimates the
+# uncertainty of the correlation coefficients, and saves both the numerical results and
+# the corresponding figures.
 
 import pandas as pd
 import numpy as np

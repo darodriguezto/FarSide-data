@@ -5,8 +5,11 @@ Created on Mon Feb 10 21:51:55 2025
 
 @author: daniel
 """
-# Normalizes the weekly far-side and near-side time series (including uncertainties),
-# saves the normalized dataset, and generates a comparison plot with error bars.
+# This script normalizes the weekly far-side and near-side time series,
+# including the associated uncertainties, using Min-Max scaling.
+# It saves the normalized dataset and generates a comparison plot
+# showing the magnetic field strength with error bars and the number
+# of detected active regions over time.
 
 import numpy as np
 import pandas as pd
@@ -18,7 +21,7 @@ from sklearn.preprocessing import MinMaxScaler
 def main(year):
     # Leer el archivo CSV
     carpeta_base = os.path.join(os.getcwd(), year)
-    archivo = os.path.join(carpeta_base, 'INCHISTO_agrupado_por_semana1.csv')
+    archivo = os.path.join(carpeta_base, 'INCHISTO_agrupado_por_semana1X.csv')
     data = pd.read_csv(archivo)
     name = f'PvDprueba{year}.png'
     salida = os.path.join(carpeta_base, name)
