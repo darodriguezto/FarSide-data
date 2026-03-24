@@ -1,4 +1,4 @@
-all: farside nearside weekly normalize crosscorrelation
+all: farside nearside weekly normalize crosscorrelation uncertainty
 
 farside:
 	python scripts/farside_processing.py $(year)
@@ -14,3 +14,5 @@ normalize:
 
 crosscorrelation:
 	python scripts/crosscorrelation.py $(year)
+uncertainty:
+	python scripts/uncertainty_pipeline.py $(year)
